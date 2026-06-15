@@ -49,6 +49,65 @@
    </div>
 </aside>
 
+<div id="modal" class="fixed w-full hidden h-screen flex items-center justify-center z-60 bg-[black]/50">
+   
+
+<form id="modalContent" class="max-w-md mx-auto bg-[white] p-8 rounded-lg">
+  <div class="relative z-0 w-full mb-5 group">
+      <input type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+      <label for="email" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email</label>
+  </div>
+  <div class="relative z-0 w-full mb-5 group">
+      <input type="text" name="teacherFullname" id="teacherFullname" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+      <label for="teacherFullname" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Full name</label>
+  </div>
+  <div class="relative z-0 w-full mb-5 group">
+      <input type="text" name="repeat_password" id="avatar" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+      <label for="avatar" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Photo URL</label>
+  </div>
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="number" name="salary" id="salary" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+        <label for="salary" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Salary</label>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="text" name="subject" id="subject" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+        <label for="subject" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Subject</label>
+    </div>
+  </div>
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="tel" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+        <label for="floating_phone" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Phone number</label>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="number" name="experience" id="experience" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+        <label for="experience" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Experience</label>
+    </div>
+  </div>
+  <button type="submit" class="text-white bg-[blue] rounded-lg box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Submit</button>
+</form>
+
+</div>
+
+<header class="w-full  pl-[270px] pt-[20px] mx-auto flex justify-between p-6">
+   <div class="flex max-w-[600px] w-full">
+        <div class="max-w-[350px] h-[50px] w-full overflow-hidden rounded-tl-lg rounded-bl-lg">
+      <input id="search" class="w-full h-full rounded-tl-lg rounded-bl-lg text-[20px] font-bold text-[gray]/50 botder border-[grey] p-2 bg-[white]" placeholder="Search" type="text"  >
+   </div>
+   <div class="h-[50px] overflow-hidden max-w-[105px] w-full rounded-tr-lg rounded-br-lg">
+      <select class="h-full w-full rounded-tr-lg duration-350 rounded-br-lg text-[20px] font-bold text-[white] botder border-[grey] p-2 bg-[black]" name="theSorting" id="teachersSorter">
+         <option value="Normal">Normal</option>
+         <option value="asc">A-Z</option>
+         <option value="desc">Z-A</option>
+      </select>
+   </div> 
+   </div>
+   <div class="">
+      <button id="addTeacher" class="w-[150px] h-[50px] bg-[#A9A9A9] hover:bg-[black] duration-350 rounded-lg text-[18px] font-bold text-[white]">+Add teacher</button>
+   </div>
+</header>
+
 <div class="p-4 sm:ml-64 flex flex-col gap-7">
  <h1 class="font-bold text-[28px] pb-[5]">Teachers</h1>
  <div id="Teachers_part" class="flex flex-col gap-2">
