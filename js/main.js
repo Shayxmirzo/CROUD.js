@@ -69,8 +69,8 @@ function forTeachers(content, data){
             </div>
         </div>
         <div>
-            <button onClick="editTeacher(${el.id})" class="p-3 bg-[blue] border border-[gray] text-[white] rounded-[15px]">Edit</button>
-            <button onClick="deleteTeacher(${el.id})" class="p-3 bg-[red] border border-[gray] text-[white] rounded-[15px]">Delete</button>
+            <button onClick="editTeacher(event,${el.id})" class="p-3 bg-[blue] border border-[gray] text-[white] rounded-[15px]">Edit</button>
+            <button onClick="deleteTeacher(event,${el.id})" class="p-3 bg-[red] border border-[gray] text-[white] rounded-[15px]">Delete</button>
         </div>
     </a>
         `
@@ -101,7 +101,9 @@ function forStudents(content, data){
 }
 getData("teachers")
 getData("students")
-async function deleteTeacher(id) {
+async function deleteTeacher(event,id) {
+    event.preventDefault();  
+  event.stopPropagation();
   try {
     let check = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/students`);
   
@@ -266,7 +268,9 @@ SearchStu.addEventListener("input", async function(e){
   }
 });
 }
-async function editTeacher(id) {
+async function editTeacher(event,id) {
+  event.preventDefault();  
+  event.stopPropagation();
   modal.classList.remove("hidden");
   selectID = id;
   try{
