@@ -16,21 +16,35 @@ let addStudent = document.getElementById("addStudent");
 let modalStu = document.getElementById("modalStu");
 let modalContentStu = document.getElementById("modalContentStu");
 let StudentsSorter = document.getElementById("StudentsSorter");
-let SearchStu = document.getElementById("SearchStu");
+let SearchStu = document.getElementById("searchStu");
+let teacherselect = document.getElementById("teacherselect");
+let studentEmail = document.getElementById("studentEmail");
+let studentName = document.getElementById("studentName");
+let studentAvatar = document.getElementById("studentAvatar");
+let studentAge = document.getElementById("studentAge");
+let studentAddress = document.getElementById("studentAddress");
+let parentName = document.getElementById("parentName");
 let selectID = null;
+let selectStuID = null;
 
 async function getData(url) {
   
   try{
     let res = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/${url}`);
-    let material = res.data;
+    let material = res?.data;
     if(url === "teachers"){
-        
+       
            forTeachers(Teachers_part, material)
     }
     if(url === "students"){
-      console.log(material);
-      
+    
+     
+      let iwork = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/teachers`);
+      iwork.data.map((el) =>{
+        teacherselect.innerHTML +=`
+        <option value="${el.id}">${el.teacherName}</option>
+        `
+      })
        forStudents(StudentsPart, material) 
     }
     
@@ -43,7 +57,7 @@ function forTeachers(content, data){
     content.innerHTML ="";
     data.map((el) =>{
         content.innerHTML += `
-        <div class="w-full h-[84px] px-2 flex items-center justify-between bg-[white] rounded-[15px] border border-[gray]">
+        <a href="./teacherpage.html?id=${el.id}" class="w-full h-[84px] px-2 flex items-center justify-between bg-[white] rounded-[15px] border border-[gray]">
         <div class="flex items-center gap-3">
             <div class="w-13 h-13 bg-[gray] overflow-hidden rounded-full">
                 <img src="${el.avatar}" alt="">
@@ -58,7 +72,7 @@ function forTeachers(content, data){
             <button onClick="editTeacher(${el.id})" class="p-3 bg-[blue] border border-[gray] text-[white] rounded-[15px]">Edit</button>
             <button onClick="deleteTeacher(${el.id})" class="p-3 bg-[red] border border-[gray] text-[white] rounded-[15px]">Delete</button>
         </div>
-    </div>
+    </a>
         `
     })
 }
@@ -78,8 +92,8 @@ function forStudents(content, data){
             </div>
         </div>
         <div>
-            <button class="p-3 bg-[blue] border border-[gray] text-[white] rounded-[15px]">Edit</button>
-            <button onClick="deletestudent(${el.id})" class="p-3 bg-[red] border border-[gray] text-[white] rounded-[15px]">Delete</button>
+            <button onClick="editStudent('${el.id}')" class="p-3 bg-[blue] border border-[gray] text-[white] rounded-[15px]">Edit</button>
+            <button onClick="deletestudent('${el.teacherId}', '${el.id}')" class="p-3 bg-[red] border border-[gray] text-[white] rounded-[15px]">Delete</button>
         </div>
     </div>
         `
@@ -89,27 +103,37 @@ getData("teachers")
 getData("students")
 async function deleteTeacher(id) {
   try {
-    await axios.delete(
-      `https://6a26c767a84f9d39e907e1b6.mockapi.io/teachers/${id}`
-    );
+    let check = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/students`);
+  
+    let filteredstu = check.data.filter((el) => el.teacherId == id);
 
-    await getData("teachers");
+    console.log("Students found for this teacher:", filteredstu);
+    
+    if (filteredstu.length > 0) {
+      alert('This teacher has students. Please delete the students before deleting the teacher');
+    } else {
+      await axios.delete(
+        `https://6a26c767a84f9d39e907e1b6.mockapi.io/teachers/${id}`
+      );
+      await getData("teachers");
+    }
 
   } catch (err) {
     console.log(err);
   }
 }
-async function deletestudent(id) {
+async function deletestudent(tId,id) {
   console.log("Student ID:", id);
 
   try {
     await axios.delete(
-      `https://6a26c767a84f9d39e907e1b6.mockapi.io/students/${id}`
+      `https://6a26c767a84f9d39e907e1b6.mockapi.io/teachers/${tId}/students/${id}`
     );
 
     await getData("students");
+    await getStudent()
   } catch (err) {
-    console.log(err.response);
+    console.log(err);
   }
 }
 if (addTeacher) {
@@ -173,23 +197,24 @@ modalContentStu.addEventListener("submit",async function(e){
   StudentInfo.studentName = e.target[1].value;
   StudentInfo.avatar = e.target[2].value;
   StudentInfo.age = e.target[3].value;
-  StudentInfo.Address = e.target[4].value;
-  StudentInfo.phoneNumber = e.target[5].value;
-  StudentInfo.experience = e.target[6].value;
+  StudentInfo.address = e.target[4].value;
+  StudentInfo.parentName = e.target[5].value;
+  StudentInfo.teacherId = e.target[6].value;
 
   try{
-    selectID ? await axios.put(`https://6a26c767a84f9d39e907e1b6.mockapi.io/students/${selectID}`, StudentInfo) :
+    selectStuID ? await axios.put(`https://6a26c767a84f9d39e907e1b6.mockapi.io/students/${selectStuID}`, StudentInfo) :
   await axios.post(`https://6a26c767a84f9d39e907e1b6.mockapi.io/students`, StudentInfo);
 
-   await getData("teachers");
+   await getData("students");
+   await getStudent()
    e.target.reset();
-   selectID = null;
+   selectStuID = null;
   }catch(err){
     console.log(err);
     
   }
-  teachersSorter.value = "Normal";
-  modal.classList.add("hidden")
+  StudentsSorter.value = "Normal";
+  modalStu.classList.add("hidden")
 });
 
 }
@@ -225,17 +250,17 @@ if(search){
 search.addEventListener("input", async function(e){
   try{
     let res = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/teachers?teacherName=${e.target.value}`);
-    forTeachers(Teachers_part, res.data)
+    forTeachers(Teachers_part, res?.data)
   }catch(err){
     console.log(err);
   }
 });
 }
 if(SearchStu){
-  SearchStu.addEventListener("input", async function(e){
+SearchStu.addEventListener("input", async function(e){
   try{
     let res = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/students?studentName=${e.target.value}`);
-    forStudents(StudentsPart, res.data)
+    forStudents(StudentsPart, res?.data)
   }catch(err){
     console.log(err);
   }
@@ -246,16 +271,32 @@ async function editTeacher(id) {
   selectID = id;
   try{
     let res = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/teachers/${id}`);
-    email.value = res.data.email;
-    teacherFullname.value = res.data.teacherName;
-    avatar.value = res.data.avatar;
-    salary.value = res.data.salary;
-    subject.value = res.data.subject;
-    floating_phone.value = res.data.phoneNumber;
-    experience.value = res.data.experience;
+    email.value = res?.data.email;
+    teacherFullname.value = res?.data.teacherName;
+    avatar.value = res?.data.avatar;
+    salary.value = res?.data.salary;
+    subject.value = res?.data.subject;
+    floating_phone.value = res?.data.phoneNumber;
+    experience.value = res?.data.experience;
   }catch(err){
     console.log(err);
     
   }
 };
-
+async function editStudent(id) {
+   modalStu.classList.remove("hidden");
+  selectStuID = id;
+  try{
+    let res = await axios.get(`https://6a26c767a84f9d39e907e1b6.mockapi.io/students/${id}`);
+    studentEmail.value = res?.data.email;
+    studentName.value = res?.data.studentName;
+    studentAvatar.value = res?.data.avatar;
+    studentAge.value = res?.data.age;
+    studentAddress.value = res?.data.address;
+    parentName.value = res?.data.parentName;
+    teacherselect.value = res?.data.teacherId;
+  }catch(err){
+    console.log(err);
+    
+  }
+}

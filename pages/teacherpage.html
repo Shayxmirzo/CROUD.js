@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/onepage.js" defer></script>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+<body class="bg-[gray]/50">
+    <div id="modalStu" class="fixed w-full hidden h-screen flex items-center justify-center z-50 bg-[black]/50">
+   
+
+<form id="modalContentStu" class="max-w-md mx-auto bg-[white] p-8 rounded-lg">
+
+
+  <div class="relative z-0 w-full mb-5 group">
+      <input type="email" name="studentEmail" id="studentEmail" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+      <label for="studentEmail" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+        Email
+      </label>
+  </div>
+
+
+  <div class="relative z-0 w-full mb-5 group">
+      <input type="text" name="studentName" id="studentName" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+      <label for="studentName" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+        Student Name
+      </label>
+  </div>
+
+
+  <div class="relative z-0 w-full mb-5 group">
+      <input type="text" name="studentAvatar" id="studentAvatar" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+      <label for="studentAvatar" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+        Photo URL
+      </label>
+  </div>
+
+  <div class="grid md:grid-cols-2 md:gap-6">
+
+
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="number" name="studentAge" id="studentAge" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+        <label for="studentAge" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+          Age
+        </label>
+    </div>
+
+
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="text" name="studentAddress" id="studentAddress" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+        <label for="studentAddress" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+          Address
+        </label>
+    </div>
+
+  </div>
+
+  <div class="grid md:grid-cols-2 md:gap-6">
+
+
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="text" name="parentName" id="parentName" class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" placeholder=" " required />
+        <label for="parentName" class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
+          Parent Name
+        </label>
+    </div>
+
+  
+    <div class="relative z-0 w-full mb-5 group">
+
+        <select id="teacherselect"
+          class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium focus:outline-none focus:ring-0 focus:border-brand peer"
+          required>
+
+          
+
+        </select>
+
+        <label for="teacherselect"
+          class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]">
+          Teacher
+        </label>
+
+    </div>
+
+  </div>
+
+  <button type="submit" class="text-white bg-[blue] rounded-lg box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+    Submit
+  </button>
+
+</form>
+</div>
+
+<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base ms-3 mt-3 text-sm p-2 focus:outline-none inline-flex sm:hidden">
+   <span class="sr-only">Open sidebar</span>
+   <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+       <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10"/>
+   </svg>
+</button>
+
+
+<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-full bg-[white] transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+   <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default">
+      <ul class="space-y-2 font-medium">
+         <li>
+            <a href="../index.html" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                <svg class="w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z"/></svg>
+                <span class="ms-3">Dashboard</span>
+            </a>
+         </li>
+         <li>
+            <a href="../pages/teachers.html" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v14M9 5v14M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg>
+                <span class="flex-1 ms-3 whitespace-nowrap">Teachers</span>
+              </a>
+         </li>
+         <li>
+            <a href="../pages/students.html" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 13h3.439a.991.991 0 0 1 .908.6 3.978 3.978 0 0 0 7.306 0 .99.99 0 0 1 .908-.6H20M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M4 13l2-9h12l2 9M9 7h6m-7 3h8"/></svg>
+                <span class="flex-1 ms-3 whitespace-nowrap">Students</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/></svg>
+                <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+            </a>
+         </li>
+      </ul>
+   </div>
+</aside>
+
+
+<header class="w-full bg-[white] sm:pl-[280px] px-6 py-4 flex items-center justify-between border-b border-gray-200">
+    <div id="teacherphotname" class="flex items-center gap-4">
+
+        <img id="teacherAvatar" class="w-12 h-12 rounded-full object-cover border border-gray-300" src="https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/71.jpg" alt="Teacher Avatar">
+        <h1 id="headerTeacherName" class="text-2xl font-bold text-gray-800">Chris Smitham</h1>
+    </div>
+</header>
+
+
+<div class="p-6 sm:ml-64 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    
+
+    <div class="lg:col-span-2 space-y-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Teacher Profile Details</h2>
+            
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-xs text-gray-500 font-medium uppercase">Email Address</p>
+                    <p id="teacherEmail" class="text-sm font-semibold text-gray-800 break-all"></p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-xs text-gray-500 font-medium uppercase">Experience</p>
+                    <p id="teacherExperience" class="text-sm font-semibold text-gray-800"></p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-xs text-gray-500 font-medium uppercase">Base Salary</p>
+                    <p id="teacherSalary" class="text-sm font-semibold text-gray-800"></p>
+                </div>
+            </div>
+
+        
+            <div>
+                <h3 class="text-sm font-bold text-gray-700 mb-2">Biography & Description</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+            </div>
+        </div>
+    </div>
+
+   <div class="lg:col-span-1 h-full">
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex flex-col h-full max-h-[350px]">
+        
+        <div class="flex-shrink-0">
+            <h2 class="text-xl font-semibold text-gray-800 mb-1">Teacher Feedback</h2>
+            <p class="text-xs text-gray-500 mb-3">Leave a public comment or review.</p>
+        </div>
+        
+        <div id="commentsContainer" class="flex-grow overflow-y-auto pr-1 space-y-3 mb-4 max-h-[160px]">
+        
+            <p id="noCommentsText" class="text-xs text-gray-400 italic hidden">No comments posted yet.</p>
+        </div>
+
+        <div class="flex-shrink-0 pt-3 border-t border-gray-100">
+            <form id="commentForm" class="flex gap-2" onsubmit="event.preventDefault();">
+                <input 
+                    id="commentInput" 
+                    type="text"
+                    class="flex-grow p-2 text-xs text-gray-800 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 outline-none" 
+                    placeholder="Write a comment..." 
+                    required
+                />
+                <button 
+                    id="submitCommentBtn"
+                    class="py-2 px-3 text-xs font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700 "
+                >
+                    Post
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</div>
+<div class="p-4 sm:ml-64 flex flex-col gap-7">
+ <h1 class="font-bold text-[28px] pb-[5]">Teacher`s tudents</h1>
+ <div id="StudentsPart" class="flex flex-col gap-2">
+  
+ </div>
+</div>
+</body>
+</html>
